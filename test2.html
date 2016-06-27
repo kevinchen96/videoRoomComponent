@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .container{
+                width:400px;
+                border-style: solid;
+                border-width: 1px;
+                height:80px;
+                overflow: hidden;
+            }
+            img{
+                width:16px;
+                z-index:-1;
+            }
+            .floating{
+                float: left;
+                -webkit-animation-name: Floating;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-timing-function: ease-in-out;
+            }
+
+            @-webkit-keyframes Floating{
+                from {-webkit-transform:translate(0, 0px);}
+                50% {-webkit-transform:translate(0, 64px);}
+                to {-webkit-transform: translate(0, -0px);}    
+            }
+
+            .moving{
+                float: left;
+                -webkit-animation-name: moving;
+                -webkit-animation-duration:10s;
+                -webkit-animation-timing-function:ease-in-out;
+
+                  -webkit-animation-fill-mode: forwards; 
+                  animation-fill-mode: forwards;
+            }
+                
+            @-webkit-keyframes moving{
+                from {-webkit-transform:translateX(0);}
+                to {-webkit-transform: translateX(1000%);}    
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <div class="moving">
+            <img class="floating" src="smiley.png">
+            <div class="floating">Kevin Chen</div>
+        </div>
+        </div>
+    </body>
+</html>
