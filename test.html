@@ -1,15 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	#container{
+		position:relative;
+		width:700px;
+	}
+	video{
+		width:inherit;
+	}
+	#container:-webkit-full-screen{
+		width:100%;
+	}
+            .container{
+            	position: absolute;
+			    top: 0px;
+			    left: 0px;
+			    height: 200px;
+                width:inherit;
+                overflow: hidden;
+                z-index:1000;
+            }
+            img{
+                width:24px;
+                z-index:-1;
+            }
+            .floating{
+                float: left;
+                -webkit-animation-name: Floating;
+                -webkit-animation-duration: 2s;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-timing-function: ease-in-out;
+            }
+
+            @-webkit-keyframes Floating{
+                from {-webkit-transform:translate(0, 100px);}
+                50% {-webkit-transform:translate(0, 150px);}
+                to {-webkit-transform: translate(0, 100px);}    
+            }
+
+            .moving{
+                float: left;
+                -webkit-animation-name: moving;
+                -webkit-animation-duration:10s;
+                -webkit-animation-timing-function:ease-in-out;
+
+                  -webkit-animation-fill-mode: forwards; 
+                  animation-fill-mode: forwards;
+            }
+                
+            @-webkit-keyframes moving{
+                from {-webkit-transform:translateX(0);}
+                to {-webkit-transform: translateX(1300px);}    
+            }
+        </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 </head>
 <body>
-
-<video id="video1" width="400" controls>
+<div id="container">
+<video id="video1" controls>
   <source src="test.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
 </video>
-
+<div class="container">
+        <div class="moving">
+            <img class="floating" src="smiley.png">
+        </div>
+        </div>
+</div>
 <p>
 Video courtesy of
 <a href="http://www.bigbuckbunny.org/" target="_blank">Big Buck Bunny</a>.
@@ -21,7 +79,7 @@ document.getElementById('video1').addEventListener('pause', tempPlay);
 
 function tempPlay(){
 	if(playing == true){
-		document.getElementById('video1').play().then(function(){return});
+		document.getElementById('video1').play();
 		console.log("play");
 		playing = true;
 		setTimeout(pauseVid, 500);
@@ -39,7 +97,7 @@ function tempPause(){
 function playVid(){
 	console.log("here");
 	playing = true;
-	document.getElementById('video1').play().then(function(){return});
+	document.getElementById('video1').play();
 }
 
 function pauseVid(){
